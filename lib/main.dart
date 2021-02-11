@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(MyApp());
@@ -30,29 +31,42 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
+    // Can't call async function directly within initState
+    getShows();
+  }
 
+  void getShows() async {
+    await GetHttpData.getShows();
+  }
+
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-
         title: Text(widget.title),
       ),
       body: Center(
-
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Flutter App to Query TVMaze.com ',
+              'Query TVMaze.com ',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
             Text('Makes a call to tvmaze api using http plugin.'),
-
           ],
         ),
       ),
     );
+  }
+}
+
+class GetHttpData {
+  static Future<dynamic> getShows() async {
+    var url = "https://api.tvmaze.com/search/shows?q=vikings";
+    http.Response response = await http.get(url);
+    print(response);
   }
 }
