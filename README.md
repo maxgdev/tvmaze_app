@@ -8,3 +8,4 @@ Flutter App to query TVMaze.com REST API.
 - [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 - [online documentation](https://flutter.dev/docs), which offers tutorials,
 - tvmaze.com
+- https://pub.dev/packages/http

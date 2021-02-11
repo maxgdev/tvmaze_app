@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'dart:convert' as convert;
 
 void main() {
   runApp(MyApp());
@@ -67,6 +68,12 @@ class GetHttpData {
   static Future<dynamic> getShows() async {
     var url = "https://api.tvmaze.com/search/shows?q=vikings";
     http.Response response = await http.get(url);
-    print(response);
+    var jsonResponse = convert.jsonDecode(response.body);
+    print(response.statusCode);
+    // print(response.body);
+    print("=================================================================");
+    // print(jsonResponse);
+    print(jsonResponse[0]['score']);
+    print(jsonResponse[0]['show']['name']);
   }
 }
