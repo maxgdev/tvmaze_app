@@ -68,13 +68,14 @@ class _MyHomePageState extends State<MyHomePage> {
 class GetHttpData {
   static Future<dynamic> getShows() async {
     var url = "https://api.tvmaze.com/search/shows?q=vikings";
+
     http.Response response = await http.get(url);
-    var jsonResponse = convert.jsonDecode(response.body);
-    print(response.statusCode);
-    // print(response.body);
-    print("=================================================================");
-    // print(jsonResponse);
-    print(jsonResponse[0]['score']);
-    print(jsonResponse[0]['show']['name']);
+    var responseData = convert.jsonDecode(response.body) as List;
+    var shows =
+        responseData.map((json) => SearchShow.fromJson(json).show).toList();
+    print(shows);
+    // print("===============================================================");
+    print("Number of shows ${shows.length}");
+    return shows;
   }
 }

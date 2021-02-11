@@ -9,3 +9,4 @@ Flutter App to query TVMaze.com REST API.
 - [online documentation](https://flutter.dev/docs), which offers tutorials,
 - tvmaze.com
 - https://pub.dev/packages/http
+- https://app.quicktype.io/

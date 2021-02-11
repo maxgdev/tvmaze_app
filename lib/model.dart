@@ -107,3 +107,16 @@ class EnumValues<T> {
         return reverseMap;
     }
 }
+
+class SearchShow {
+
+  Show show;
+
+  SearchShow({this.show});
+
+  factory SearchShow.fromJson(Map<String, dynamic> json) {
+    return SearchShow(
+      show: Show.fromJson(json['show']),
+    );
+  }
+}
