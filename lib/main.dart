@@ -49,10 +49,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget showTile(show) {
     return ListTile(
-      leading: Icon(Icons.movie),
+      leading: Icon(Icons.movie, color: Colors.blue[200]),
       title: Text(show.name),
-      subtitle: Text("${show.id}"),
-      trailing: Icon(Icons.favorite),
+      subtitle: Text("${show.summary}"),
+      trailing: Column(
+        children: [
+          Text("${show.rating.average}"),
+          Icon(Icons.favorite, color: Colors.red[200]),
+        ],
+      ),
     );
   }
 
@@ -72,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Column(
                 children: shows.map((e) => showTile(e)).toList(),
-                // children: shows.map((e) => Text("${e.name}, ${e.id}")).toList(),
+                
               ),
             ],
           ),
