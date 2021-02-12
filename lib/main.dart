@@ -14,12 +14,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       // Hide the Debug banner
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Flutter TVMaze App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Flutter TVMaze App'),
     );
   }
 }
@@ -33,6 +33,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  List<Show> shows = [];
   @override
   void initState() {
     super.initState();
@@ -41,7 +42,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void getShows() async {
-    await GetHttpData.getShows();
+    final showData = await GetHttpData.getShows();
+    setState(() {
+      shows = showData;
+    });
   }
 
   Widget build(BuildContext context) {
@@ -57,7 +61,10 @@ class _MyHomePageState extends State<MyHomePage> {
               'Query TVMaze.com ',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
-            Text('Makes a call to tvmaze api using http plugin.'),
+            Text("List View goes here"),
+            Column(
+              children: shows.map((e) => Text("${e.name}, ${e.id}")).toList(),
+            ),
           ],
         ),
       ),
@@ -71,11 +78,10 @@ class GetHttpData {
 
     http.Response response = await http.get(url);
     var responseData = convert.jsonDecode(response.body) as List;
+    // List<Widget> showList = [];
     var shows =
         responseData.map((json) => SearchShow.fromJson(json).show).toList();
-    print(shows);
-    // print("===============================================================");
-    print("Number of shows ${shows.length}");
+
     return shows;
   }
 }
