@@ -47,23 +47,35 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  Widget showTile(show) {
+    return ListTile(
+      leading: Icon(Icons.movie),
+      title: Text(show.name),
+      subtitle: Text("${show.id}"),
+      trailing: Icon(Icons.favorite),
+    );
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Query TVMaze.com ',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-            ),
-            Column(
-              children: shows.map((e) => Text("${e.name}, ${e.id}")).toList(),
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'Query TVMaze.com ',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              ),
+              Column(
+                children: shows.map((e) => showTile(e)).toList(),
+                // children: shows.map((e) => Text("${e.name}, ${e.id}")).toList(),
+              ),
+            ],
+          ),
         ),
       ),
     );
