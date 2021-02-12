@@ -8,7 +8,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -61,7 +60,6 @@ class _MyHomePageState extends State<MyHomePage> {
               'Query TVMaze.com ',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
-            Text("List View goes here"),
             Column(
               children: shows.map((e) => Text("${e.name}, ${e.id}")).toList(),
             ),
@@ -75,13 +73,10 @@ class _MyHomePageState extends State<MyHomePage> {
 class GetHttpData {
   static Future<dynamic> getShows() async {
     var url = "https://api.tvmaze.com/search/shows?q=vikings";
-
     http.Response response = await http.get(url);
     var responseData = convert.jsonDecode(response.body) as List;
-    // List<Widget> showList = [];
     var shows =
         responseData.map((json) => SearchShow.fromJson(json).show).toList();
-
     return shows;
   }
 }
