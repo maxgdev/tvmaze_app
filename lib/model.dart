@@ -46,7 +46,7 @@ class Show {
         "genres": List<dynamic>.from(genres.map((x) => x)),
         "officialSite": officialSite == null ? null : officialSite,
         "rating": rating.toJson(),
-        "image": showImage == null ? 'https://via.placeholder.com/210x295?text=Placeholder' : showImage.toJson(),
+        "image": showImage == null ? null : showImage.toJson(),
         "summary": summary,
     };
 }

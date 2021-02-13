@@ -8,10 +8,13 @@ Widget showTile(show) {
       children: <Widget>[
         Expanded(
           flex: 2,
-          child: Container(
-            padding: EdgeInsets.all(10),
-            // child: Text('show image'),
-            child: Image.network(show.showImage.medium),
+          child: GestureDetector(
+            onTap: () => print("Tapped on: ${show.name}"),
+            child: Container(
+              padding: EdgeInsets.all(10),
+              // child: Text('show image'),
+              child: Image.network(show.showImage.medium),
+            ),
           ),
         ),
         Expanded(
@@ -29,6 +32,7 @@ Widget showTile(show) {
               ),
             )),
       ],
+      
     ),
   );
 }
