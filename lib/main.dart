@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert' as convert;
+// import 'package:http/http.dart' as http;
+// import 'dart:convert' as convert;
 import './model.dart';
 import 'ShowTile.dart';
+import 'GetHttpData.dart';
 
 void main() {
   runApp(MyApp());
@@ -74,16 +75,16 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class GetHttpData {
-  static Future<dynamic> getShows() async {
-    var url = "https://api.tvmaze.com/search/shows?q=house-of-cards";
-    // var url = "https://api.tvmaze.com/search/shows?q=vikings";
-    // vikings - too many null entries for images
-    // Good for future todo on catching null errors
-    http.Response response = await http.get(url);
-    var responseData = convert.jsonDecode(response.body) as List;
-    var shows =
-        responseData.map((json) => SearchShow.fromJson(json).show).toList();
-    return shows;
-  }
-}
+// class GetHttpData {
+//   static Future<dynamic> getShows() async {
+//     var url = "https://api.tvmaze.com/search/shows?q=house-of-cards";
+//     // var url = "https://api.tvmaze.com/search/shows?q=vikings";
+//     // vikings - too many null entries for images
+//     // Good for future todo on catching null errors
+//     http.Response response = await http.get(url);
+//     var responseData = convert.jsonDecode(response.body) as List;
+//     var shows =
+//         responseData.map((json) => SearchShow.fromJson(json).show).toList();
+//     return shows;
+//   }
+// }
