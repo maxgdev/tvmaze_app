@@ -34,7 +34,12 @@ Widget showTile(BuildContext context, show) {
               // leading: Icon(Icons.movie),
               title: Text(show.name),
               // subtitle: Text("${show.summary}"),
-              subtitle: Text(show.summary),
+              subtitle: Text(
+                show.summary,
+                maxLines: 6,
+                overflow: TextOverflow.ellipsis,
+                softWrap: false,
+              ),
               trailing: Column(
                 children: [
                   Text("${show.rating.average}"),

@@ -4,6 +4,7 @@ Flutter App to query TVMaze.com REST API.
 - Parses JSON into ListView tiles
 - Show details onPress
 
+
 ## Credits
 - [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 - [online documentation](https://flutter.dev/docs), which offers tutorials,
