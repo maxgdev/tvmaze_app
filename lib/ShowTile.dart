@@ -1,6 +1,11 @@
+// import 'dart:js';
+// import './model.dart';
 import 'package:flutter/material.dart';
+import 'package:tvmaze_app/ShowDetails.dart';
+// import 'package:tvmaze_app/ShowDetails.dart';
+import 'ShowDetails.dart';
 
-Widget showTile(show) {
+Widget showTile(BuildContext context, show) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 5.0),
     child: Row(
@@ -9,7 +14,13 @@ Widget showTile(show) {
         Expanded(
           flex: 2,
           child: GestureDetector(
-            onTap: () => print("Tapped on: ${show.name}"),
+            onTap: () {
+              print('---Details page---');
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ShowDetails(show: show)),
+              );
+            },
             child: Container(
               padding: EdgeInsets.all(10),
               // child: Text('show image'),
@@ -32,7 +43,6 @@ Widget showTile(show) {
               ),
             )),
       ],
-      
     ),
   );
 }

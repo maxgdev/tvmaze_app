@@ -11,3 +11,4 @@ Flutter App to query TVMaze.com REST API.
 - https://pub.dev/packages/http
 - https://app.quicktype.io/
 - https://jsonformatter.curiousconcept.com
+- https://placeholder.com/
