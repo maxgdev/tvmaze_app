@@ -10,7 +10,7 @@ class Show {
         this.genres,
         this.officialSite,
         this.rating,        
-        this.image,
+        this.showImage,
         this.summary,
 
     });
@@ -22,7 +22,7 @@ class Show {
     List<String> genres;
     String officialSite;
     Rating rating;
-    Image image;
+    ShowImage showImage;
     String summary;
 
     factory Show.fromJson(Map<String, dynamic> json) => Show(
@@ -33,11 +33,12 @@ class Show {
         genres: List<String>.from(json["genres"].map((x) => x)),
         officialSite: json["officialSite"] == null ? null : json["officialSite"],
         rating: Rating.fromJson(json["rating"]),
-        image: json["image"] == null ? null : Image.fromJson(json["image"]),
+        showImage: json["image"] == null ? null : ShowImage.fromJson(json["image"]),
         summary: json["summary"],
     );
 
     Map<String, dynamic> toJson() => {
+      
         "id": id,
         "url": url,
         "name": name,
@@ -45,13 +46,13 @@ class Show {
         "genres": List<dynamic>.from(genres.map((x) => x)),
         "officialSite": officialSite == null ? null : officialSite,
         "rating": rating.toJson(),
-        "image": image == null ? null : image.toJson(),
+        "image": showImage == null ? 'https://via.placeholder.com/210x295?text=Placeholder' : showImage.toJson(),
         "summary": summary,
     };
 }
 
-class Image {
-    Image({
+class ShowImage {
+    ShowImage({
         this.medium,
         this.original,
     });
@@ -59,7 +60,7 @@ class Image {
     String medium;
     String original;
 
-    factory Image.fromJson(Map<String, dynamic> json) => Image(
+    factory ShowImage.fromJson(Map<String, dynamic> json) => ShowImage(
         medium: json["medium"],
         original: json["original"],
     );

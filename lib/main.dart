@@ -33,6 +33,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<Show> shows = [];
+  
   @override
   void initState() {
     super.initState();
@@ -48,14 +49,33 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget showTile(show) {
-    return ListTile(
-      leading: Icon(Icons.movie, color: Colors.blue[200]),
-      title: Text(show.name),
-      subtitle: Text("${show.summary}"),
-      trailing: Column(
-        children: [
-          Text("${show.rating.average}"),
-          Icon(Icons.favorite, color: Colors.red[200]),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Expanded(
+            flex: 2,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              // child: Text('show image'),
+              child: Image.network(show.showImage.medium),
+            ),
+          ),
+          Expanded(
+              flex: 3,
+              child: ListTile(
+                // leading: Icon(Icons.movie),
+                title: Text(show.name),
+                // subtitle: Text("${show.summary}"),
+                subtitle: Text(show.summary),
+                trailing: Column(
+                  children: [
+                    Text("${show.rating.average}"),
+                    Icon(Icons.favorite, color: Colors.red[200]),
+                  ],
+                ),
+              )),
         ],
       ),
     );
@@ -71,13 +91,12 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                'Query TVMaze.com ',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-              ),
+              // Text(
+              //   'Query TVMaze.com ',
+              //   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              // ),
               Column(
                 children: shows.map((e) => showTile(e)).toList(),
-                
               ),
             ],
           ),
@@ -89,7 +108,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
 class GetHttpData {
   static Future<dynamic> getShows() async {
-    var url = "https://api.tvmaze.com/search/shows?q=vikings";
+    var url = "https://api.tvmaze.com/search/shows?q=house-of-cards";
+    // var url = "https://api.tvmaze.com/search/shows?q=vikings";
+    // vikings - too many null entries for images
+    // Good for future todo on catching null errors
     http.Response response = await http.get(url);
     var responseData = convert.jsonDecode(response.body) as List;
     var shows =
