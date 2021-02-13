@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 import './model.dart';
+import 'ShowTile.dart';
 
 void main() {
   runApp(MyApp());
@@ -33,7 +34,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<Show> shows = [];
-  
+
   @override
   void initState() {
     super.initState();
@@ -48,38 +49,38 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  Widget showTile(show) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5.0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Expanded(
-            flex: 2,
-            child: Container(
-              padding: EdgeInsets.all(10),
-              // child: Text('show image'),
-              child: Image.network(show.showImage.medium),
-            ),
-          ),
-          Expanded(
-              flex: 3,
-              child: ListTile(
-                // leading: Icon(Icons.movie),
-                title: Text(show.name),
-                // subtitle: Text("${show.summary}"),
-                subtitle: Text(show.summary),
-                trailing: Column(
-                  children: [
-                    Text("${show.rating.average}"),
-                    Icon(Icons.favorite, color: Colors.red[200]),
-                  ],
-                ),
-              )),
-        ],
-      ),
-    );
-  }
+  // Widget showTile(show) {
+  //   return Padding(
+  //     padding: const EdgeInsets.symmetric(vertical: 5.0),
+  //     child: Row(
+  //       crossAxisAlignment: CrossAxisAlignment.start,
+  //       children: <Widget>[
+  //         Expanded(
+  //           flex: 2,
+  //           child: Container(
+  //             padding: EdgeInsets.all(10),
+  //             // child: Text('show image'),
+  //             child: Image.network(show.showImage.medium),
+  //           ),
+  //         ),
+  //         Expanded(
+  //             flex: 3,
+  //             child: ListTile(
+  //               // leading: Icon(Icons.movie),
+  //               title: Text(show.name),
+  //               // subtitle: Text("${show.summary}"),
+  //               subtitle: Text(show.summary),
+  //               trailing: Column(
+  //                 children: [
+  //                   Text("${show.rating.average}"),
+  //                   Icon(Icons.favorite, color: Colors.red[200]),
+  //                 ],
+  //               ),
+  //             )),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   Widget build(BuildContext context) {
     return Scaffold(
